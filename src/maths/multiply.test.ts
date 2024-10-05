@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'bun:test'
-import { add } from './add.ts'
+import { multiply } from './multiply.ts'
 
 describe('add', () => {
   test('adds two numbers', () => {
-    expect(add(1, 2)).toBe(3)
+    expect(multiply(2, 3)).toBe(6)
   })
 })
