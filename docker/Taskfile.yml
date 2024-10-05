@@ -1,0 +1,11 @@
+version: '3'
+
+
+tasks:
+  build:
+    vars:
+      VERSION: '{{default "local" .IMAGE_VERSION}}'
+    cmds:
+      - sh build.sh {{.VERSION}}
+    desc: Build the mobile-api image
+

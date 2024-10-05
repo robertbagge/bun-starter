@@ -1,5 +1,10 @@
 version: '3'
 
+includes:
+  docker:
+    taskfile: docker/Taskfile.yml
+    dir: docker
+
 tasks:
   deps:install:
     desc: installs Bun dependencies
@@ -59,3 +64,8 @@ tasks:
       - code:typecheck
       - code:format:fix
       - code:lint:fix
+
+  build:
+    desc: builds the Bun server for production
+    cmds:
+      - bun build index.ts --outdir ./out
