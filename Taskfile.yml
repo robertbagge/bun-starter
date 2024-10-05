@@ -1,0 +1,57 @@
+version: '3'
+
+tasks:
+  deps:install:
+    desc: installs Bun dependencies
+    cmds:
+      - bun install
+
+  start:dev:
+    desc: starts the Bun server in development mode
+    cmds:
+      - bun run index.ts
+
+
+  test:
+    desc: runs the tests
+    cmds:
+      - bun test
+
+  code:format:
+    desc: checks if the code is formatted correctly
+    cmds:
+      - bunx prettier -c 'src/**/*.{ts,tsx}'
+
+  code:format:fix:
+    desc: formats the code to align with style rules
+    cmds:
+      - bunx prettier -w 'src/**/*.{ts,tsx}'
+
+  code:lint:
+    desc: checks if the code is linted correctly
+    cmds:
+      - bunx eslint src/ --max-warnings=0
+
+  code:lint:fix:
+    desc: lints the code and fixes the issues
+    cmds:
+      - bunx eslint src/ --max-warnings=0 --fix
+
+  code:typecheck:
+    desc: checks if the code is typed correctly
+    cmds:
+      - bunx tsc --noEmit
+
+  code:check:
+    desc: checks if the code is formatted, linted, and typed correctly
+    deps:
+      - code:typecheck
+      - code:format
+      - code:lint
+
+  code:check:fix:
+    desc: formats and lints the code to align with style rules
+    deps:
+      - code:typecheck
+      - code:format:fix
+      - code:lint:fix
