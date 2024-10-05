@@ -1,0 +1,22 @@
+name: Bun Starter
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - uses: arduino/setup-task@v2
+
+      - name: deps:install
+        run: task deps:install
+      - name: check
+        run: task code:check
+      - name: test
+        run: task test
