@@ -6,11 +6,15 @@ tasks:
     cmds:
       - bun install
 
-  start:dev:
+  start:
     desc: starts the Bun server in development mode
     cmds:
       - bun run index.ts
 
+  start:dev:
+    desc: starts the Bun server in watch mode
+    cmds:
+      - bun run --watch index.ts
 
   test:
     desc: runs the tests
